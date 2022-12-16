@@ -490,7 +490,6 @@ namespace ctpstrategy
                 row.m_cells[21].setString(data[i].forceCloseReason);
                 row.m_cells[22].setString("");
                 row.m_cells[23].setString("");
-                row.m_cells[24].setString("");
             }
             gridOrder.update();
             gridOrder.invalidate();

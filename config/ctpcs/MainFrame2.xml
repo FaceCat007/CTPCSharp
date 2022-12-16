@@ -98,7 +98,6 @@
                         </div>
                         <table name="gridOrder" dock="Fill" size="569,330" backcolor="none" bordercolor="none">
                           <tr>
-                            <th name="colA17" columntype="no" horizontalalign="far" text="序列号" allowsort="false" width="80" />
                             <th name="colA1" columntype="text" text="报单编号" width="80" />
                             <th name="colA2" columntype="text" text="合约" width="80" />
                             <th name="colA3" columntype="text" horizontalalign="center" text="买卖" width="60" />

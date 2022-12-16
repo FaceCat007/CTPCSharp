@@ -90,10 +90,10 @@ namespace ctpstrategy
         /// 获取手续费率
         /// </summary>
         [DllImport("iCTP.dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int GetCommissionRate(int ctpID, String code, IntPtr data);
-        public static int GetCommissionRate(int ctpID, String code, StringBuilder data) {
+        public static extern int getCommissionRate(int ctpID, String code, IntPtr data);
+        public static int getCommissionRate(int ctpID, String code, StringBuilder data) {
             IntPtr bufferIntPtr = Marshal.AllocHGlobal(1024 * 1024);
-            int state = GetCommissionRate(ctpID, code, bufferIntPtr);
+            int state = getCommissionRate(ctpID, code, bufferIntPtr);
             String sbResult = Marshal.PtrToStringAnsi(bufferIntPtr);
             data.Append(sbResult);
             Marshal.FreeHGlobal(bufferIntPtr);
