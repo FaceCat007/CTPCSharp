@@ -833,6 +833,24 @@ namespace ctpstrategy
                     Thread.Sleep(1);
                 }
                 reqID = CTPDLL.generateReqID(m_ctpID);
+                StringBuilder data = new StringBuilder(1024 * 1024 * 10);
+                if (CTPDLL.getInstrumentsData(m_ctpID, data) > 0)
+                {
+                    List<Security> instrumentDatas = CTPConvert.convertToCTPInstrumentDatas(data.ToString());
+                    onSecurityCallBack(instrumentDatas, m_ctpID);
+                }
+                data = new StringBuilder(1024 * 1024 * 10);
+                if (CTPDLL.getOrderInfos(m_ctpID, data) > 0)
+                {
+                    List<OrderInfo> orderInfos = CTPConvert.convertToCTPOrderList(data.ToString());
+                    onOrderInfosCallBack(orderInfos, m_ctpID);
+                }
+                data = new StringBuilder(1024 * 1024 * 10);
+                if (CTPDLL.getTradeRecords(m_ctpID, data) > 0)
+                {
+                    List<TradeRecord> tradeRecords = CTPConvert.convertToCTPTradeRecords(data.ToString());
+                    onTradeRecordsCallBack(tradeRecords, m_ctpID);
+                }
                 CTPDLL.subMarketDatas(m_ctpID, reqID, "cu2301,cu2302,cu2303,rb2301,rb2302,rb2304,ru2301,ru2302,ru2303");
                 System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
                 timer.Tick += new EventHandler(timer_Tick);
@@ -857,35 +875,17 @@ namespace ctpstrategy
         {
             while (CTPDLL.hasNewDatas(m_ctpID) > 0)
             {
-                StringBuilder data = new StringBuilder(1024000);
+                StringBuilder data = new StringBuilder(102400);
                 if (CTPDLL.getDepthMarketData(m_ctpID, data) > 0)
                 {
                     List<SecurityLatestData> latestData = CTPConvert.convertToCTPDepthMarketData(data.ToString());
                     onSecurityLatestDataCallBack(latestData, m_ctpID);
                     continue;
                 }
-                if (CTPDLL.getInstrumentsData(m_ctpID, data) > 0)
-                {
-                    List<Security> instrumentDatas = CTPConvert.convertToCTPInstrumentDatas(data.ToString());
-                    onSecurityCallBack(instrumentDatas, m_ctpID);
-                    continue;
-                }
                 if (CTPDLL.getAccountData(m_ctpID, data) > 0)
                 {
                     AccountData accountData = CTPConvert.convertToCTPAccountData(data.ToString());
                     onAccountDataCallBack(accountData, m_ctpID);
-                    continue;
-                }
-                if (CTPDLL.getOrderInfos(m_ctpID, data) > 0)
-                {
-                    List<OrderInfo> orderInfos = CTPConvert.convertToCTPOrderList(data.ToString());
-                    onOrderInfosCallBack(orderInfos, m_ctpID);
-                    continue;
-                }
-                if (CTPDLL.getTradeRecords(m_ctpID, data) > 0)
-                {
-                    List<TradeRecord> tradeRecords = CTPConvert.convertToCTPTradeRecords(data.ToString());
-                    onTradeRecordsCallBack(tradeRecords, m_ctpID);
                     continue;
                 }
                 if (CTPDLL.getPositionData(m_ctpID, data) > 0)
