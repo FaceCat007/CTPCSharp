@@ -381,6 +381,10 @@ namespace ctpstrategy
             {
                 return;
             }
+            if (data.orderSysID.Length == 0)
+            {
+                return;
+            }
             FCGrid gridOrder = getGrid("gridOrder");
             gridOrder.setGridLineColor(FCColor.None);
             FCGridRow row = null;
@@ -712,6 +716,10 @@ namespace ctpstrategy
         /// <param name="data">交易信息</param>
         public virtual void onTradeRecordCallBack(TradeRecord data, int ctpID)
         {
+            if (data.tradeID.Length == 0)
+            {
+                return;
+            }
             FCGrid gridTradeRecord = getGrid("gridTradeRecord");
             gridTradeRecord.setGridLineColor(FCColor.None);
             FCGridRow row = new FCGridRow();
