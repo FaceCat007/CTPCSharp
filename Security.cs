@@ -379,9 +379,7 @@ namespace ctpstrategy
         /// 获取可用仓位
         /// </summary>
         public int getAvailablePosition() {
-            int position = 0;
-            position = position - getFrozenAmount();
-            return position;
+            return position - getFrozenAmount();
         }
 
         /// <summary>

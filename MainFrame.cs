@@ -262,12 +262,19 @@ namespace ctpstrategy
                 row.m_cells[2].setString(FCTran.intToStr(data[i].ydPosition + data[i].todayPosition));
                 row.m_cells[3].setString(FCTran.intToStr(data[i].ydPosition));
                 row.m_cells[4].setString(FCTran.intToStr(data[i].todayPosition));
-                row.m_cells[5].setString("0");
+                row.m_cells[5].setString(FCTran.intToStr(data[i].getAvailablePosition()));
                 row.m_cells[6].setString(FCTran.getValueByDigit(data[i].positionCost, 0));
                 row.m_cells[7].setString(FCTran.getValueByDigit(data[i].positionProfit, 0));
                 row.m_cells[8].setString(FCTran.getValueByDigit(data[i].margin, 0));
                 row.m_cells[9].setString(data[i].hedgeFlag);
-                row.m_cells[10].setString(data[i].code);
+                if (m_allCodes.containsKey(data[i].code))
+                {
+                    row.m_cells[10].setString(m_allCodes.get(data[i].code).exchangeID);
+                }
+                else
+                {
+                    row.m_cells[10].setString("0");
+                }
                 row.m_cells[11].setString("0");
                 row.m_cells[12].setString("0");
                 row.m_cells[13].setString("0");
@@ -282,7 +289,7 @@ namespace ctpstrategy
                 row.m_cells[22].setString("0");
                 row.m_cells[23].setString("0");
                 row.m_cells[24].setString("0");
-                row.m_cells[25].setString("0");
+                row.m_cells[25].setString(FCTran.getValueByDigit(data[i].floatProfit, 0));
                 row.m_cells[26].setString("0");
                 row.m_cells[27].setString("0");
                 row.m_cells[28].setString("0");
