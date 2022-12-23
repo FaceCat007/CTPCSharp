@@ -204,8 +204,11 @@ namespace ctpstrategy
             }
             gridTradeAccount.m_rows[0].m_cells[0].setString(FCTran.getValueByDigit(data.balance, 0));
             gridTradeAccount.m_rows[0].m_cells[1].setString(FCTran.getValueByDigit(data.closeProfit, 0));
+            setCellStyle2(gridTradeAccount.m_rows[0].m_cells[1], data.closeProfit, 0);
             gridTradeAccount.m_rows[0].m_cells[2].setString(FCTran.getValueByDigit(data.floatProfit, 0));
+            setCellStyle2(gridTradeAccount.m_rows[0].m_cells[2], data.floatProfit, 0);
             gridTradeAccount.m_rows[0].m_cells[3].setString(FCTran.getValueByDigit(data.positionProfit, 0));
+            setCellStyle2(gridTradeAccount.m_rows[0].m_cells[3], data.positionProfit, 0);
             gridTradeAccount.m_rows[0].m_cells[4].setString(FCTran.getValueByDigit(data.dynamicBalance, 0));
             gridTradeAccount.m_rows[0].m_cells[5].setString(FCTran.getValueByDigit(data.currMargin, 0));
             gridTradeAccount.m_rows[0].m_cells[6].setString(FCTran.getValueByDigit(data.frozenCash, 0));
@@ -265,6 +268,7 @@ namespace ctpstrategy
                 row.m_cells[5].setString(FCTran.intToStr(data[i].getAvailablePosition()));
                 row.m_cells[6].setString(FCTran.getValueByDigit(data[i].positionCost, 0));
                 row.m_cells[7].setString(FCTran.getValueByDigit(data[i].positionProfit, 0));
+                setCellStyle2(row.m_cells[7], data[i].positionProfit, 0);
                 row.m_cells[8].setString(FCTran.getValueByDigit(data[i].margin, 0));
                 row.m_cells[9].setString(data[i].hedgeFlag);
                 if (m_allCodes.containsKey(data[i].code))
@@ -290,6 +294,7 @@ namespace ctpstrategy
                 row.m_cells[23].setString("0");
                 row.m_cells[24].setString("0");
                 row.m_cells[25].setString(FCTran.getValueByDigit(data[i].floatProfit, 0));
+                setCellStyle2(row.m_cells[25], data[i].positionProfit, 0);
                 row.m_cells[26].setString("0");
                 row.m_cells[27].setString("0");
                 row.m_cells[28].setString("0");
