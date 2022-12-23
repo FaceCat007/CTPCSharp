@@ -461,6 +461,10 @@ namespace ctpstrategy
                 {
                     return;
                 }
+                if (data[i].orderSysID.Length == 0)
+                {
+                    return;
+                }
                 FCGridRow row = null;
                 for (int j = 0; j < gridOrder.m_rows.size(); j++)
                 {
@@ -787,6 +791,10 @@ namespace ctpstrategy
             gridTradeRecord.setGridLineColor(FCColor.None);
             for (int i = 0; i < data.Count; i++)
             {
+                if (data[i].tradeID.Length == 0)
+                {
+                    return;
+                }
                 FCGridRow row = new FCGridRow();
                 row.setHeight(30);
                 gridTradeRecord.insertRow(0, row);
