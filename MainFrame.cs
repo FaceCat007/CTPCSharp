@@ -178,6 +178,7 @@ namespace ctpstrategy
         /// 资金账户信息回调
         /// </summary>
         /// <param name="data">资金账户</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onAccountDataCallBack(AccountData data, int ctpID)
         {
             FCGrid gridTradeAccount = getGrid("gridTradeAccount");
@@ -234,6 +235,7 @@ namespace ctpstrategy
         /// 持仓数据回调
         /// </summary>
         /// <param name="data">持仓</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onInvestorPositionCallBack(List<InvestorPosition> data, int ctpID)
         {
             FCGrid gridInvestorPosition = getGrid("gridInvestorPosition");
@@ -321,6 +323,7 @@ namespace ctpstrategy
         /// 持仓数据回调
         /// </summary>
         /// <param name="data">持仓明细</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onInvestorPositionDetailCallBack(List<InvestorPositionDetail> data, int ctpID)
         {
             FCGrid gridInvestorPositionDetail = getGrid("gridInvestorPositionDetail");
@@ -387,6 +390,7 @@ namespace ctpstrategy
         /// 推送的委托回报回调
         /// </summary>
         /// <param name="data">委托回报</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onOrderInfoCallBack(OrderInfo data, int ctpID)
         {
             if (data.orderStatus == "未知")
@@ -451,6 +455,7 @@ namespace ctpstrategy
         /// 主动查询的委托回报回调
         /// </summary>
         /// <param name="data">委托回报列表</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onOrderInfosCallBack(List<OrderInfo> data, int ctpID)
         {
             FCGrid gridOrder = getGrid("gridOrder");
@@ -514,13 +519,21 @@ namespace ctpstrategy
             gridOrder.invalidate();
         }
 
+        /// <summary>
+        /// 所有的代码
+        /// </summary>
         public HashMap<String, Security> m_allCodes = new HashMap<string, Security>();
+
+        /// <summary>
+        /// 所有的行情
+        /// </summary>
         public HashMap<String, SecurityLatestData> m_allDatas = new HashMap<string, SecurityLatestData>();
 
         /// <summary>
         /// 码表回调
         /// </summary>
         /// <param name="data">码表</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onSecurityCallBack(List<Security> data, int ctpID)
         {
             FCGrid contractGrid = getGrid("gridContracts");
@@ -590,6 +603,12 @@ namespace ctpstrategy
             contractGrid.invalidate();
         }
 
+        /// <summary>
+        /// 设置单元格样式
+        /// </summary>
+        /// <param name="cell">单元格</param>
+        /// <param name="value1">第一个值</param>
+        /// <param name="value2">第二个值</param>
         public void setCellStyle2(FCGridCell cell, object value1, object value2)
         {
             double num1 = 0;
@@ -625,6 +644,7 @@ namespace ctpstrategy
         /// 最新数据回调
         /// </summary>
         /// <param name="data">最新数据</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onSecurityLatestDataCallBack(List<SecurityLatestData> data, int ctpID)
         {
             FCGrid gridLatestData = getGrid("gridLatestData");
@@ -730,6 +750,7 @@ namespace ctpstrategy
         /// 推送的交易信息回调
         /// </summary>
         /// <param name="data">交易信息</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onTradeRecordCallBack(TradeRecord data, int ctpID)
         {
             if (data.tradeID.Length == 0)
@@ -785,6 +806,7 @@ namespace ctpstrategy
         /// 主动查询的交易信息回调
         /// </summary>
         /// <param name="tradeRecords">交易信息列表</param>
+        /// <param name="ctpID">交易ID</param>
         public virtual void onTradeRecordsCallBack(List<TradeRecord> data, int ctpID)
         {
             FCGrid gridTradeRecord = getGrid("gridTradeRecord");
@@ -844,6 +866,8 @@ namespace ctpstrategy
         /// <summary>
         /// 登陆到CTP
         /// </summary>
+        /// <param name="appID">应用ID</param>
+        /// <param name="authCode">用户ID</param>
         /// <param name="mdServer">行情地址</param>
         /// <param name="tdServer">交易地址</param>
         /// <param name="brokerID">机构ID</param>
@@ -891,6 +915,11 @@ namespace ctpstrategy
             }
         }
 
+        /// <summary>
+        /// 秒表方法
+        /// </summary>
+        /// <param name="sender">调用者</param>
+        /// <param name="e">参数</param>
         private void timer_Tick(object sender, EventArgs e)
         {
             checkCTPData();
@@ -943,6 +972,14 @@ namespace ctpstrategy
             }
         }
 
+        /// <summary>
+        /// 表格单元格事件
+        /// </summary>
+        /// <param name="eventName">事件名称</param>
+        /// <param name="sender">调用者</param>
+        /// <param name="cell">单元格</param>
+        /// <param name="touchInfo">触摸参数</param>
+        /// <param name="invoke">引用对象</param>
         public void callGridCellTouchEvent(string eventName, object sender, FCGridCell cell, FCTouchInfo touchInfo, object invoke)
         {
             FCGrid grid = sender as FCGrid;

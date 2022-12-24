@@ -9,6 +9,9 @@ using System.Runtime.InteropServices;
 
 namespace ctpstrategy
 {
+    /// <summary>
+    /// CTP交易API
+    /// </summary>
     public class CTPDLL {
         /*
 	    卖平：多单平仓
