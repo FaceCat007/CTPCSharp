@@ -972,6 +972,7 @@ namespace ctpstrategy
                     onOrderInfoCallBack(orderInfo, m_ctpID);
                     continue;
                 }
+                break;
             }
         }
 
