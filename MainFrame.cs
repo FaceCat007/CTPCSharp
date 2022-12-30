@@ -459,6 +459,7 @@ namespace ctpstrategy
         public virtual void onOrderInfosCallBack(List<OrderInfo> data, int ctpID)
         {
             FCGrid gridOrder = getGrid("gridOrder");
+            gridOrder.clearRows();
             gridOrder.setGridLineColor(FCColor.None);
             for (int i = 0; i < data.Count; i++)
             {
@@ -537,6 +538,7 @@ namespace ctpstrategy
         public virtual void onSecurityCallBack(List<Security> data, int ctpID)
         {
             FCGrid contractGrid = getGrid("gridContracts");
+            contractGrid.clearRows();
             contractGrid.setGridLineColor(FCColor.None);
             for (int i = 0; i < data.Count; i++)
             {
@@ -810,6 +812,7 @@ namespace ctpstrategy
         public virtual void onTradeRecordsCallBack(List<TradeRecord> data, int ctpID)
         {
             FCGrid gridTradeRecord = getGrid("gridTradeRecord");
+            gridTradeRecord.clearRows();
             gridTradeRecord.setGridLineColor(FCColor.None);
             for (int i = 0; i < data.Count; i++)
             {
